@@ -310,41 +310,119 @@ export default {
       }
       this.show = false;
     },
-    selectGoodsInfo() {
-      let sku = this.$refs.sku; //所有商品
-      let select_sku = sku.selectedSku; //选择的商品属性
-      let select_data = sku.getSkuData(); //商品信息信息及规格属性
-      let data = [];
-      //处理属性规格
-      for (var key in select_sku) {
-        this.sku.tree.forEach(function (item, index, array) {
-          if (item["k_s"] == key) {
-            //数组查找ID
-            var newArray = item["v"].filter(function (x) {
-              return x.id == select_sku[key];
-            });
-            newArray[0]["title"] = item["k"]; //加名称
-            data.push(newArray);
-          }
-        });
-      }
-      select_data["data"] = data;
-      select_data["goods"] = this.goods;
-      //商品规格
-      let goods_data = {};
-      goods_data["goodsId"] = select_data["goodsId"];
-      goods_data["num"] = select_data["selectedNum"];
-      goods_data["price"] = select_data["selectedSkuComb"]["price"];
-      goods_data["stock_num"] = select_data["selectedSkuComb"]["stock_num"];
-      goods_data["skuid"] = select_data["selectedSkuComb"]["id"];
-      goods_data["data"] = select_data["data"];
-      goods_data["goods"] = select_data["goods"];
-      return goods_data;
-    },
+    // selectGoodsInfo() {
+    //   let sku = this.$refs.sku; //所有商品
+    //   let select_sku = sku.selectedSku; //选择的商品属性
+    //   let select_data = sku.getSkuData(); //商品信息信息及规格属性
+    //   let data = [];
+    //   //处理属性规格
+    //   for (var key in select_sku) {
+    //     this.sku.tree.forEach(function (item, index, array) {
+    //       if (item["k_s"] == key) {
+    //         //数组查找ID
+    //         var newArray = item["v"].filter(function (x) {
+    //           return x.id == select_sku[key];
+    //         });
+    //         newArray[0]["title"] = item["k"]; //加名称
+    //         data.push(newArray);
+    //       }
+    //     });
+    //   },
+    //   //格式化数据
+    //   formatPrice() {
+    //     return '¥' + (this.goods.price / 100).toFixed(2);
+    //   },
+      //提交订单
+      onBuyClicked() {
+       let params=[];
+       params['0']= this.selectGoodsInfo(); //数组列表
+       this.$cache_set('goodsOrder',params);//全局状态 每次重新赋值
+       this.$navto('/addorder')
+      },
 
-    onClickCart() {
-      this.$router.push("cart");
-    },
+
+      //加入购物车
+      onAddCartClicked() {
+        //获取购物车数据（如果没有数据，String转化JSON数据类型）
+        let goods_data= this.selectGoodsInfo();
+        let n = 0;
+        let k = 0;
+        let that = this;
+        let chartGoods = localStorage.getItem('cart'); //获取
+        if (chartGoods != null && chartGoods != '') {
+          chartGoods = JSON.parse(chartGoods); //转化成JSON格式
+          chartGoods.forEach(function(item, index, array) {
+            //判定当前选择商品规格是否存在，如果已经存在相同商品，直接数量加+（防止超出库存加入购物车）
+            if (item.skuid == goods_data.skuid) {
+              let stock_num = chartGoods[index].stock_num; //库存
+              if (stock_num <= 1) {
+                k = 1; //判定条件
+              } else {
+                chartGoods[index]['num'] += chartGoods[index].num;
+              }
+              n++;
+            }
+          });
+        } else {
+          chartGoods = [];
+        }
+        if (n == 0) {
+          chartGoods.unshift(goods_data);
+        }
+        if (k == 1) {
+          this.$toast('加入失败，库存不足');
+        } else {
+          //数组未尾添加一个数据  unshift 数组添加一个数据首位 sort自定义排序  [... arr,arr2]
+          localStorage.setItem('cart', JSON.stringify(chartGoods)); //加入本地存储购物
+
+          // this.$store.state.chartGoods.push(chartGoods)
+          // console.log(this.$store.state.chartGoods);
+          this.$toast('加入成功');
+        }
+        if(goods_data['data'].length>0){
+          let select_sku_text='';//
+          goods_data['data'].forEach(function(item,index){
+             select_sku_text+=item[0]['title']+':'+item[0]['name'];
+          });
+          this.sku_text=select_sku_text;
+        }
+        this.show = false;
+      },
+      selectGoodsInfo(){
+        let sku = this.$refs.sku; //所有商品
+        let select_sku = sku.selectedSku; //选择的商品属性
+        let select_data = sku.getSkuData(); //商品信息信息及规格属性
+        let data = [];
+        //处理属性规格
+        for (var key in select_sku) {
+          this.sku.tree.forEach(function(item, index, array) {
+            if (item['k_s'] == key) {
+              //数组查找ID
+              var newArray = item['v'].filter(function(x) {
+                return x.id == select_sku[key];
+              });
+              newArray[0]['title'] = item['k']; //加名称
+              data.push(newArray);
+            }
+          });
+        }
+        select_data['data'] = data;
+        select_data['goods'] = this.goods;
+        //商品规格
+        let goods_data = {};
+        goods_data['goodsId'] = select_data['goodsId'];
+        goods_data['num'] = select_data['selectedNum'];
+        goods_data['price'] = select_data['selectedSkuComb']['price'];
+        goods_data['stock_num'] = select_data['selectedSkuComb']['stock_num'];
+        goods_data['skuid'] = select_data['selectedSkuComb']['id'];
+        goods_data['data'] = select_data['data'];
+        goods_data['goods'] = select_data['goods'];
+        return goods_data;
+      },
+
+      onClickCart() {
+        this.$router.push('cart');
+      },
 
     buy(id) {
       this.show = true;

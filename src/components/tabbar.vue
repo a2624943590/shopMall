@@ -22,11 +22,20 @@
       //点击切换
       activeIndex() {
         this.$router.push('/' + this.active);
+      },
+      toIndex(){
+        this.active = 'index'
+        this.activeIndex()
       }
+
     },
     mounted() {
+      this.$bus.$on('toIndex',this.toIndex)
       this.active=this.$route.name;
-    }
+    },
+    beforeDestroy() {
+      this.$bus.$off('toIndex')
+    },
   };
 </script>
 

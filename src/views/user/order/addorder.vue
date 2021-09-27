@@ -58,6 +58,7 @@
   </div>
 </template>
 <script>
+  import {findItem} from '../../../common/js/base'
   import {
     userInfo,
     voucherList,
@@ -94,6 +95,7 @@
           invoice_title: '',
           invoice_desc: ''
         },
+        payList:[]
       };
     },
     computed: {
@@ -108,13 +110,21 @@
     },
     //初始化状态时候获取的
     mounted() {
+     this.payList = this.$route.query.id
+     console.log(this.payList);
       //获取提交过来的产品信息
       let goods = localStorage.getItem('goodsOrder');
       if (goods) {
         goods = JSON.parse(goods);
       }
+      for(let i = 0;i < this.payList.length;i++){
+        let index = findItem(goods,'skuid',this.payList[i])
+        // console.log(index);
+        if(index != -1)
+          this.goodsData.push(goods[index])
+      }
       //本地赋值
-      this.goodsData = goods;
+      // this.goodsData = goods;
       //调用默认请求信息
       this.initData()
       //调用优惠劵接口
@@ -256,10 +266,26 @@
         let res = await orderAct(params);
 
         if (res.code == 200) {
+          this.$store.state.voncer = this.formatPrice(this.voncer)
+          // console.log('voncer',this.$store.state.voncer);
           let orderid = res.data.order_id;
           this.$router.push('payment?id=' + orderid + '&type=1');
+          
+          let cartList = JSON.parse(localStorage.getItem('cart'))
+          console.log('cartList',cartList);
+          for(let i = 0;i < this.payList.length;i++){
+            const index = findItem(cartList,'skuid',this.payList[i])
+            if(index !== -1){
+              cartList.splice(index,1)
+            }
+            console.log('index',index);
+          }
+          localStorage.setItem('cart',JSON.stringify(cartList))
         }
         //this.$router.push('payment');
+      },
+      formatPrice(price) {
+        return (price / 100).toFixed(2);
       },
 
       //订单号

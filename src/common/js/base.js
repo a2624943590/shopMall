@@ -36,7 +36,8 @@ function $cache_get(name) {
 function $cartnum() {
   let cart = localStorage.getItem('cart');
   if (cart != null && cart != '') {
-    return JSON.parse(cart).length;
+    this.$store.state.chartGoods = JSON.parse(cart).length;
+    return this.$store.state.chartGoods
   } else {
     return 0;
   }

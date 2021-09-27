@@ -38,7 +38,7 @@
         }else{
           this.result_txt='支付失败';
         }
-        this.order_amount=res.data.order_amount;
+        this.order_amount=res.data.order_amount - this.$store.state.voncer;
       }
       },
       //返回上一页
