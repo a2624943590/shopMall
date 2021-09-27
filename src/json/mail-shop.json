@@ -1,0 +1,61 @@
+{
+	"productList":[
+		{
+			"id": 1,
+			"img": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/c691b8a8dc7e3a37bdea7bd5eb6eaf3c.jpg?thumb=1&w=338&h=338",
+			"name": "全面屏电视  E55X",
+			"evaluation": "潮流全面屏设计,4k超高清画质",
+			"factory": 899,
+			"sell_price": 2342
+		},{
+			"id": 2,
+			"img": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/fe3f37e6f1ad601e1d8348195d620662.jpg?thumb=1&w=338&h=338",
+			"name": "小米全面屏电视  E75X",
+			"evaluation":" 全面屏设计搭配高质量画质",
+			"factory": 899,
+			"sell_price": 2342
+		},{
+			"id": 3,
+			"img": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/20d970b239e6b7152d07b6282e160192.jpg?thumb=1&w=221&h=221",
+			"name": "小米全面屏电视  E45X",
+			"evaluation": "全面屏设计，人工智能系统",
+			"factory": 899,
+			"sell_price": 2342
+		},{
+			"id": 4,
+			"img": "cdn.cnbj1.fds.api.mi-img.com/mi-mall/c1bb566a499a4691cf878bb3ac23c056.jpg?thumb=1&w=221&h=221",
+			"name": "小米全面屏电视  E85X",
+			"evaluation": "大屏更享受",
+			"factory": 899,
+			"sell_price": 2342
+		},{
+			"id": 5,
+			"img": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/abf7219dc5dd88a5a425e05d66459c1e.jpg?thumb=1&w=221&h=221",
+			"name": "小米全面屏电视  T65X",
+			"evaluation": "人工智能语音系统,超高清画质",
+			"factory": 899,
+			"sell_price": 2342
+		},{
+			"id": 6,
+			"img": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/26eb3bb463c62c0be77dfd04cae7a703.jpg?thumb=1&w=221&h=221",
+			"name": "小米全面屏电视  W65X",
+			"evaluation": "全金属机身，2G+32G大存储，支持8K视频解码",
+			"factory": 899,
+			"sell_price": 2342
+		},{
+			"id": 7,
+			"img": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/37c64856e3d7a35557049bb5e5c9e687.jpg?thumb=1&w=221&h=221",
+			"name": "小米全面屏电视  Q65X",
+			"evaluation": "澎湃音效影院级体验",
+			"factory": 899,
+			"sell_price": 2342
+		},{
+			"id": 8,
+			"img": "//cdn.cnbj1.fds.api.mi-img.com/mi-mall/162b79e71038fc5423b5e7d8880d7b4a.jpg?thumb=1&w=221&h=221",
+			"name": "小米全面屏电视  T45X",
+			"evaluation": "全面屏设计，海量内容",
+			"factory": 899,
+			"sell_price": 2342
+		}
+	]
+}
