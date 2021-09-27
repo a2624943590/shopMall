@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail-imgs">
     <div v-if="detailsImgList.length > 0">
       <img
         :src="item.body.img_url"
@@ -51,6 +51,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.detail-imgs{
+  margin-bottom: 1.25rem;
+}
 div {
   width: 100%;
 }

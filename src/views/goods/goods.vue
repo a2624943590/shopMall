@@ -84,13 +84,14 @@
       <goods-comments></goods-comments>
     </van-row>
     <!-- <details-imgs></details-imgs> -->
-    <van-tabs>
-      <van-tab title="商品详情">
+    <!-- <van-tabs> -->
+      <!-- <van-tab title="商品详情"> -->
         <!--html-->
+        <van-button block>商品详情</van-button>
         <van-row>
            <details-imgs></details-imgs>
         </van-row>
-      </van-tab>
+      <!-- </van-tab> -->
 
       <!-- <van-tab title="商品参数">
         <van-empty v-if="content == ''" image="error" description="暂无详情" />
@@ -104,7 +105,7 @@
          <comment></comment>
         </van-row>
       </van-tab> -->
-    </van-tabs>
+    <!-- </van-tabs> -->
 
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" @click="sorry">

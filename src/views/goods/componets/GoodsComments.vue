@@ -36,7 +36,7 @@
         </div>
       </router-link>
     </ul>
-    <router-link class="more" tag="div" to="/detail/comment"
+    <router-link class="more" tag="div" to="/comment"
       >更多评论<i class="iconfont icon-youjiantou"></i
     ></router-link>
   </div>
@@ -55,7 +55,7 @@ export default {
     const _data = await axios.get("http://localhost:3000/indexComment");
 
     this.commentsList = _data.data.data.goods_share_datas.comments.list;
-    console.log(this.commentsList);
+    // console.log(this.commentsList);
   },
 };
 </script>

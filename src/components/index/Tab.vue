@@ -8,7 +8,7 @@
 <template>
 	<div class="tab">
 		<van-sticky>
-			<van-search v-model="search" show-action placeholder="请输入搜索关键词" >
+			<van-search v-model="search" @focus="$navto('/search')" show-action placeholder="请输入搜索关键词" >
 				<template #action>
 					<van-icon @click="onUser" name="manager" />
 				</template>

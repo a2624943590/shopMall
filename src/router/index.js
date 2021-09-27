@@ -198,11 +198,34 @@ const routes = [{
   component: () => import('@/views/user/chat/chat'),
 },
 // 404页面
-	{
-  	  path: '/404',
-  	  name: '404',
-  	  component: () => import('@/views/404/404'),
-  	},
+{
+  path: '/404',
+  name: '404',
+  component: () => import('@/views/404/404'),
+},
+// 注册页面路由跳转
+{
+  path: '/reg',
+  name: 'reg',
+  component: () => import('@/views/register/reg'),
+},
+{
+  path: '/forget',
+  name: 'forget',
+  component: () => import('@/views/register/forget'),
+},
+// 更多评论路由跳转
+{
+  path: '/comment',
+  name: 'comment',
+  component: () => import('@/views/goods/componets/comment'),
+},
+// 搜索界面
+{
+  path: '/search',
+  name: 'search',
+  component: () => import('@/views/search/search'),
+}
 ]
 
 const router = new Router({

@@ -1,5 +1,6 @@
 <template>
   <div>
+     <common-header  title="评论列表"></common-header>
     <ul
       v-infinite-scroll="loadMore"
       infinite-scroll-disabled="loading"
@@ -18,7 +19,7 @@
           </div>
           <div class="name">
             <p>{{ item.user_name }}</p>
-            <p>{{ item.add_time }}</p>
+            <!-- <p>{{ item.add_time }}</p> -->
           </div>
           <div class="zan">
             <i class="iconfont icon-smile"></i>&nbsp;<span>超爱</span>
@@ -63,13 +64,13 @@
 // import { commentData } from '@/server/detail.js';
 // import { mapMutations } from 'vuex';
 // import swiperMask from './components/swiperMask.vue';
-// import commonHeader from '@/components/header/commonHeader.vue';
+import commonHeader from '@/components/commonHeader.vue';
 import axios from 'axios'
 export default {
-  // components:{
-  //     swiperMask,
-  //     commonHeader
-  // },
+  components:{
+      // swiperMask,
+      commonHeader
+  },
   data() {
     return {
       list: [],
